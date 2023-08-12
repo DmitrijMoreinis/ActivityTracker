@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-public class RunningDto {
+import java.util.UUID;
+
+
+public class RunningDto extends ActivityDto {
+    private UUID id;
+
 }

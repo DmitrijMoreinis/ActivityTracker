@@ -1,3 +1,5 @@
+/*
+
 package com.activityproject.activitytracker.controller;
 
 import com.activityproject.activitytracker.model.User;
@@ -30,3 +32,4 @@ public class UserController {
         return new CurrentUser(user.getId(), user.getNickname());
     }
 }
+*/
