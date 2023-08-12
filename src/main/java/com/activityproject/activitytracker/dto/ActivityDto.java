@@ -10,11 +10,15 @@ import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 
 @Data
 @NoArgsConstructor
 public abstract class ActivityDto {
+
+   private UUID id;
+
    private LocalDate doneDay;
 
    private ZonedDateTime doneTime;

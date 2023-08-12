@@ -9,9 +9,7 @@ import java.util.UUID;
 @Data
 public class Running extends Activity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private int sprints;
 
     @ManyToOne
     @JoinColumn(name="name",nullable = false)

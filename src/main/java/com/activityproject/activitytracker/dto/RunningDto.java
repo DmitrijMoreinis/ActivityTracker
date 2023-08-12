@@ -8,6 +8,6 @@ import java.util.UUID;
 
 
 public class RunningDto extends ActivityDto {
-    private UUID id;
 
+    private int sprints;
 }

@@ -16,9 +16,7 @@ import java.util.UUID;
 public class Cycling extends Activity{
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+
     @Column(name = "average_cadency")
     private float averageCadency;
     @Column(name = "average_power")

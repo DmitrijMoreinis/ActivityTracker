@@ -19,7 +19,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CyclingDto extends ActivityDto{
 
-    private UUID id;
     private float averageCadency;
     private float averagePower;
 

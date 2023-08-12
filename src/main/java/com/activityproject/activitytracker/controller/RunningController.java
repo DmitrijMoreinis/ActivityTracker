@@ -14,20 +14,21 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/running")
 
 public class RunningController {
 
     private final RunningService runningService;
 
 
-    @PostMapping("/cycling/createActivity")
+    @PostMapping
     public ResponseEntity<RunningDto> createActivity(@RequestBody @Valid RunningDto runningDto) {
         RunningDto reDto = runningService.createActivity(runningDto);
         ResponseEntity re = new ResponseEntity<>(reDto, HttpStatus.CREATED);
         return re;
     }
 
-    @GetMapping("/cycling/all")
+    @GetMapping
     public List<RunningDto> findAll() {
         return runningService.findAll();
     }

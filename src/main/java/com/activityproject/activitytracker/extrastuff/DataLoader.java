@@ -1,4 +1,4 @@
-package com.activityproject.activitytracker;
+package com.activityproject.activitytracker.extrastuff;
 
 import com.activityproject.activitytracker.mapper.CyclingMapper;
 import com.activityproject.activitytracker.model.Cycling;
