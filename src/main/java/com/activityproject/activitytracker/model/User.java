@@ -1,33 +1,33 @@
 package com.activityproject.activitytracker.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.NoArgsConstructor;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
+import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column
-    private String name;
+    private String username;
     private String password;
     @Temporal(value = TemporalType.DATE)
-    @Column(name="date_of_birth")
+    @Column
     private Date birthDate;
     private float weight;
-    @Column(name = "overall_distance_cycling")
+    @Column
     private float overallDistanceCycling;
-    @Column(name = "overall_distance_running")
+    @Column
     private float overallDistanceRunning;
     private Date createdAt;
     private Date updatedAt;
@@ -38,4 +38,10 @@ public class User{
     @OneToMany(mappedBy = "user")
     private List<Cycling> runningList;
 
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
+
+    public <E> User(String primoTizio, String user, String number, ArrayList<E> es) {
+    }
 }
+

@@ -1,35 +1,62 @@
-/*
+
 
 package com.activityproject.activitytracker.controller;
 
+
+import java.util.List;
+
+/**
+ * Interface for UserController. Contains methods for handling user related operations
+ */
 import com.activityproject.activitytracker.model.User;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
-import org.springframework.security.core.Authentication;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.activityproject.activitytracker.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.List;
+
+/**
+ * RESTful API for User management
+ */
+@RestController
+@RequestMapping("/api/v1/users")
+@RequiredArgsConstructor
 public class UserController {
-    @PostMapping("/login")
-    public CurrentUser login(@Valid @RequestBody LoginForm form, BindingResult bindingResult,
-                             HttpServletRequest request) {
-        if (bindingResult.hasErrors()) {
-            throw new AppException("Invalid username or password");
-        }
 
-        try {
-            request.login(form.getUsername(), form.getPassword());
-        } catch (ServletException e) {
-            throw new AppException("Invalid username or password");
-        }
+    /**
+     * User service for accessing user data
+     */
+    private final UserService userService;
 
-        var auth = (Authentication) request.getUserPrincipal();
-        var user = (User) auth.getPrincipal();
-        log.info("SecUser {} logged in.", user.getUsername());
+    /**
+     * Get a list of all users
+     *
+     * @return list of all users
+     */
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
 
-        return new CurrentUser(user.getId(), user.getNickname());
+    /**
+     * Save a new user
+     *
+     * @param user the user to be saved
+     */
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public User saveUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
+
+    @GetMapping("me")
+    public User getMine(){
+        return userService.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }
-*/
