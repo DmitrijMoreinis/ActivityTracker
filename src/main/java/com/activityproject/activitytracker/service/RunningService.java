@@ -1,9 +1,7 @@
 package com.activityproject.activitytracker.service;
 
-import com.activityproject.activitytracker.dto.CyclingDto;
 import com.activityproject.activitytracker.dto.RunningDto;
 import com.activityproject.activitytracker.mapper.RunningMapper;
-import com.activityproject.activitytracker.model.Cycling;
 import com.activityproject.activitytracker.model.Running;
 import com.activityproject.activitytracker.repository.RunningRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -51,6 +49,7 @@ public class RunningService {
     }
 
     public RunningDto deleteRunning(UUID id) {
+
         Optional<Running> re = runningRepository.findById(id);
         if(re.isPresent()){
             runningRepository.deleteById(id);

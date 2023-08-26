@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -23,8 +24,8 @@ public abstract class ActivityDto {
 
    private ZonedDateTime doneTime;
 
-   private String name;
 
+   @NotNull
    private float distance;
 
    private Duration duration;

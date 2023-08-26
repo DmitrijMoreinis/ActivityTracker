@@ -1,8 +1,13 @@
 package com.activityproject.activitytracker.service;
 
 import com.activityproject.activitytracker.model.Role;
+import com.activityproject.activitytracker.model.User;
+
 import com.activityproject.activitytracker.repository.RoleRepository;
 import com.activityproject.activitytracker.repository.UserRepository;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.*;
 
 
@@ -20,25 +25,26 @@ import java.util.List;
     @Service
     @RequiredArgsConstructor
     @Slf4j
+
     public class UserService implements UserDetailsService {
 
         /**
          * Autowired UserRepository for database operations.
          */
-        private UserRepository userRepository;
+        private final UserRepository userRepository;
 
         /**
          * Autowired RoleRepository for database operations.
          */
 
-        private RoleRepository roleRepository;
+        private final RoleRepository roleRepository;
 
         /**
          * Injects a bean of type PasswordEncoder into this class.
          * The bean is used for encoding passwords before storing them.
          */
 
-        private PasswordEncoder passwordEncoder;
+        private final PasswordEncoder passwordEncoder;
 
         /**
          * Loads the user by its username
@@ -75,7 +81,7 @@ import java.util.List;
          */
 
         public User saveUser(User user) {
-                log.info("Saving new user {} to the database", user.getName());
+                log.info("Saving new user {} to the database", user.getUsername());
                 // Encode the user's password for security before saving
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
                 return userRepository.save(user);
@@ -91,7 +97,7 @@ import java.util.List;
          * @return the saved role
          */
 
-        public Role saveRole(Role role) {
+        public Role saveRole( Role role) {
             log.info("Saving new role {} to the database", role.getName());
             return roleRepository.save(role);
         }
@@ -107,7 +113,7 @@ import java.util.List;
             log.info("Adding role {} to user {}", roleName, username);
 
             // Retrieve the user and role objects from the repository
-            User user = userRepository.findByUsername(username);
+            com.activityproject.activitytracker.model.User user = userRepository.findByUsername(username);
             Role role = roleRepository.findByName(roleName);
 
             // Add the role to the user's role collection
@@ -123,7 +129,7 @@ import java.util.List;
          * @param username the username to search for
          * @return the user with the given username
          */
-        public User getUser(String username) {
+        public com.activityproject.activitytracker.model.User getUser(String username) {
             log.info("Fetching user {}", username);
             return userRepository.findByUsername(username);
         }
@@ -134,12 +140,12 @@ import java.util.List;
          * @return a list of all users
          */
 
-        public List<User> getUsers() {
+        public List<com.activityproject.activitytracker.model.User> getUsers() {
             log.info("Fetching all users");
             return userRepository.findAll();
         }
 
-        public User getUserByUsername(String name) {
+        public com.activityproject.activitytracker.model.User getUserByUsername(String name) {
             log.info("Retrieving user with username {}", name);
             return userRepository.findByUsername(name);
         }

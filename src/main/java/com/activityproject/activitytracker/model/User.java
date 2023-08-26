@@ -1,9 +1,9 @@
 package com.activityproject.activitytracker.model;
 
+import com.activityproject.activitytracker.model.Cycling;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.*;
 
@@ -11,37 +11,50 @@ import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-    @Column
+    private UUID user_id;
+
     private String username;
+
+    private String name;
+
     private String password;
-    @Temporal(value = TemporalType.DATE)
-    @Column
+
     private Date birthDate;
+
     private float weight;
-    @Column
+
     private float overallDistanceCycling;
-    @Column
+
     private float overallDistanceRunning;
+
     private Date createdAt;
+
     private Date updatedAt;
+
+
+
 
 
     @OneToMany(mappedBy = "user")
     private List<Cycling> cyclingList;
     @OneToMany(mappedBy = "user")
-    private List<Cycling> runningList;
+    private List<Running> runningList;
 
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
-    public <E> User(String primoTizio, String user, String number, ArrayList<E> es) {
+    public User(String name, String username, String password, Collection<Role> roles) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
     }
 }
+
+
 

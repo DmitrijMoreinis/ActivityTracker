@@ -1,21 +1,23 @@
 package com.activityproject.activitytracker.extrastuff;
 
-import com.activityproject.activitytracker.mapper.CyclingMapper;
+
+import com.activityproject.activitytracker.dto.CyclingDto;
 import com.activityproject.activitytracker.model.Cycling;
 import com.activityproject.activitytracker.model.Role;
 import com.activityproject.activitytracker.model.User;
+import com.activityproject.activitytracker.repository.CyclingRepository;
+import com.activityproject.activitytracker.service.CyclingService;
 import com.activityproject.activitytracker.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
-
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
     @Component
@@ -24,18 +26,29 @@ import java.util.ArrayList;
 
 
         private final UserService userService;
-        @Override
-        public void onApplicationEvent(ApplicationReadyEvent event) {
-            userService.saveRole(new Role(null, "ROLE_USER"));
-            userService.saveRole(new Role(null, "ROLE_ADMIN"));
+        private final CyclingService cyclingService;
 
-            userService.saveUser(new User("primo tizio", "user", "1234", new ArrayList<>()));
-            userService.saveUser(new User("secondo caio", "user2", "1234", new ArrayList<>()));
-            userService.saveUser(new User("terzo sempronio", "admin", "1234", new ArrayList<>()));
+        public void onApplicationEvent(ApplicationReadyEvent event) {
+            userService.saveRole(new Role("ROLE_USER"));
+
+            userService.saveRole(new Role("ROLE_ADMIN"));
+
+            User u= new User("primo", "user", "1234", new ArrayList<>());
+
+            userService.saveUser(u);
+            userService.saveUser(new User("secondo", "user2", "1234", new ArrayList<>()));
+            userService.saveUser(new User("admin", "admin", "1234", new ArrayList<>()));
 
             userService.addRoleToUser("user", "ROLE_USER");
             userService.addRoleToUser("user2", "ROLE_USER");
             userService.addRoleToUser("admin", "ROLE_ADMIN");
+
+
+
+            cyclingService.createActivity(new CyclingDto());
+
+
+
         }
 
 

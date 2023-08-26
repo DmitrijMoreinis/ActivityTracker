@@ -1,29 +1,26 @@
 package com.activityproject.activitytracker.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.SuperBuilder;
-
-import java.util.UUID;
+import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Cycling extends Activity{
+@AllArgsConstructor
+public class Cycling extends Activity {
 
 
-
-    @Column(name = "average_cadency")
     private float averageCadency;
-    @Column(name = "average_power")
     private float averagePower;
 
+
     @ManyToOne
-    @JoinColumn(name="name",nullable = false)
+    @JoinColumn(name = "name")
     private User user;
+
+
 
 }

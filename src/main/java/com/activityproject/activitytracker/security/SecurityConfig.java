@@ -1,8 +1,8 @@
 package com.activityproject.activitytracker.security;
 
+
 import com.activityproject.activitytracker.filters.CustomAuthenticationFilter;
 import com.activityproject.activitytracker.filters.CustomAuthorizationFilter;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -69,6 +69,7 @@ public class SecurityConfig {
         // set the URL that the filter should process
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         // disable CSRF protection
+        http.csrf().disable();
         // set the session creation policy to stateless
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // set up authorization for different request matchers and user roles

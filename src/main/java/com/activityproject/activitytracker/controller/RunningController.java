@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/running")
+@RequestMapping("/api/v1/running")
 
 public class RunningController {
 

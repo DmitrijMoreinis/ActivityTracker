@@ -11,13 +11,9 @@ import java.util.List;
 import com.activityproject.activitytracker.model.User;
 import com.activityproject.activitytracker.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.util.List;
 
 /**
  * RESTful API for User management

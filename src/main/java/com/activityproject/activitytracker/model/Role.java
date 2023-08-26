@@ -1,20 +1,18 @@
 package com.activityproject.activitytracker.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Entity class for representing a Role in the database
  */
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Role {
     /**
      * The primary key for the Role table
@@ -24,9 +22,17 @@ public class Role {
      * The id is generated automatically by the database
      */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long role_id;
+
+
+
     /**
      * The name of the role
      */
+    @Column
     private String name;
+
+    public Role(String name) {
+        this.name = name;
+    }
 }

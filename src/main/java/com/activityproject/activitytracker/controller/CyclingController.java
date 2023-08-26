@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping ("/cycling")
 @RestController
 @RequiredArgsConstructor
-@Data
+@RequestMapping ("/api/v1/cycling")
 public class CyclingController {
 
     private final CyclingService cyclingService;
+
+    @GetMapping("/test")
+    public String testResponse(){return "chesterfield";}
 
     @PostMapping
     public ResponseEntity<CyclingDto> createActivity(@RequestBody @Valid CyclingDto cyclingDto) {
@@ -32,6 +34,7 @@ public class CyclingController {
     @GetMapping
     public List<CyclingDto> findAll() {
         return cyclingService.findAll();
+
     }
 
     @GetMapping("/{id}")
@@ -49,9 +52,5 @@ public class CyclingController {
     public void delete(@PathVariable UUID id) {
         cyclingService.deleteCycling(id);
     }
-
-
-
-
 
 }

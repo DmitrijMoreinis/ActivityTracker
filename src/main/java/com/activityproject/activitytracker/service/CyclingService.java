@@ -8,6 +8,7 @@ import com.activityproject.activitytracker.repository.CyclingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import java.util.UUID;
 
 public class CyclingService {
 
+@Autowired
     private final CyclingMapper mapper;
 
     private final CyclingRepository cyclingRepository;
