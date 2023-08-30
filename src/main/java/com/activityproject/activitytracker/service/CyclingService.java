@@ -7,6 +7,7 @@ import com.activityproject.activitytracker.model.Cycling;
 import com.activityproject.activitytracker.repository.CyclingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,11 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 
 public class CyclingService {
 
-@Autowired
+
     private final CyclingMapper mapper;
 
     private final CyclingRepository cyclingRepository;
@@ -34,6 +36,7 @@ public class CyclingService {
     public CyclingDto createActivity(CyclingDto cyclingDto) {
         Cycling cycling= mapper.toEntity(cyclingDto);
         cyclingRepository.save(cycling);
+        log.info("cyclingactivity saved");
         return mapper.toDto(cycling);
     }
 
@@ -44,7 +47,10 @@ public class CyclingService {
     public CyclingDto deleteCycling(UUID id) {
         Optional<Cycling> re = cyclingRepository.findById(id);
         if(re.isPresent()){
-        cyclingRepository.deleteById(id);
+            log.info("cylingactivity deleting");
+
+            cyclingRepository.deleteById(id);
+            log.info("cylingactivity deleted");
         return mapper.toDto(re.get()) ;}
         else throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "activity not found-database_error");
@@ -57,7 +63,10 @@ public class CyclingService {
         }
         Cycling entity = mapper.toEntity(cyclingDto);
         entity.setId(id);
+        log.info("cylingactivity updating");
+
         cyclingRepository.save(entity);
+
         return mapper.toDto(entity);
     }
 

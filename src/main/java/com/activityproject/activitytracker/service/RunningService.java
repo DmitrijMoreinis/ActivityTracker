@@ -6,6 +6,7 @@ import com.activityproject.activitytracker.model.Running;
 import com.activityproject.activitytracker.repository.RunningRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,13 +17,17 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RunningService {
 
     private final RunningRepository runningRepository;
     private final RunningMapper mapper;
     public RunningDto createActivity(RunningDto runningDto) {
         var entity = mapper.toEntity(runningDto);
+        log.info("runningactivity saving");
+
         runningRepository.save(entity);
+
         return mapper.toDto(entity);
     }
 
@@ -44,7 +49,10 @@ public class RunningService {
         }
         Running entity = mapper.toEntity(runningDto);
         entity.setId(id);
+        log.info("runningactivity updating");
+
         runningRepository.save(entity);
+
         return mapper.toDto(entity);
     }
 
@@ -53,6 +61,8 @@ public class RunningService {
         Optional<Running> re = runningRepository.findById(id);
         if(re.isPresent()){
             runningRepository.deleteById(id);
+            log.info("runningactivity deleted");
+
             return mapper.toDto(re.get()) ;}
         else throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "activity not found-database_error");

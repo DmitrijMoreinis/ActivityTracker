@@ -8,9 +8,11 @@ import java.util.List;
 /**
  * Interface for UserController. Contains methods for handling user related operations
  */
+import com.activityproject.activitytracker.model.Role;
 import com.activityproject.activitytracker.model.User;
 import com.activityproject.activitytracker.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
     /**

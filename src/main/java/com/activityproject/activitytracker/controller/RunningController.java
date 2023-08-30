@@ -4,6 +4,7 @@ import com.activityproject.activitytracker.dto.RunningDto;
 import com.activityproject.activitytracker.service.RunningService;
 import jakarta.validation.Valid;;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/api/v1/running")
 
 public class RunningController {
