@@ -1,23 +1,16 @@
-package com.activityproject.activitytracker.extrastuff;
+package com.activityproject.activitytracker.dataloader;
 
 
 import com.activityproject.activitytracker.dto.CyclingDto;
-import com.activityproject.activitytracker.model.Cycling;
 import com.activityproject.activitytracker.model.Role;
 import com.activityproject.activitytracker.model.User;
-import com.activityproject.activitytracker.repository.CyclingRepository;
 import com.activityproject.activitytracker.service.CyclingService;
 import com.activityproject.activitytracker.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
     @Component
