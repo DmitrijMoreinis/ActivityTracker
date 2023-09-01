@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -69,9 +71,9 @@ public class SecurityConfig {
         // set the URL that the filter should process
         customAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
         // disable CSRF protection
-        http.csrf().disable();
+        http.csrf(AbstractHttpConfigurer::disable);
         // set the session creation policy to stateless
-        http.sessionManagement().sessionCreationPolicy(STATELESS);
+        http.sessionManagement((session) -> session.sessionCreationPolicy(STATELESS));
         // set up authorization for different request matchers and user roles
         // modify this to have different configurations
         http.authorizeHttpRequests((requests) -> requests

@@ -8,13 +8,8 @@ import com.activityproject.activitytracker.repository.CyclingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -43,7 +38,14 @@ public class CyclingService {
     public List<CyclingDto> findAll() {
         return cyclingRepository.findAll().stream().map(mapper::toDto).toList();
     }
+    
 
+    /**
+     * checking if to deleted Entry is present, and deleting it if present
+     * if not, an exception for the user
+     * @param id getting the id for the cylcing object to delete
+     * @return retur n the deleted object
+     */    
     public CyclingDto deleteCycling(UUID id) {
         Optional<Cycling> re = cyclingRepository.findById(id);
         if(re.isPresent()){

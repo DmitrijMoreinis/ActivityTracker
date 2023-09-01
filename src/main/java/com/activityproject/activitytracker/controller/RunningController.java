@@ -2,7 +2,7 @@ package com.activityproject.activitytracker.controller;
 
 import com.activityproject.activitytracker.dto.RunningDto;
 import com.activityproject.activitytracker.service.RunningService;
-import jakarta.validation.Valid;;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
