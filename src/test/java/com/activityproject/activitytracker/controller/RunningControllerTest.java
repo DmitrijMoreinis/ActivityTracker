@@ -52,6 +52,24 @@ class RunningControllerTest {
      */
     @Test
     void testCreateActivity() {
+        //   Diffblue Cover was unable to write a Spring test,
+        //   so wrote a non-Spring test instead.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.ZonedDateTime` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling (through reference chain: com.activityproject.activitytracker.dto.RunningDto["createdAt"])
+        //       at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:77)
+        //       at com.fasterxml.jackson.databind.SerializerProvider.reportBadDefinition(SerializerProvider.java:1308)
+        //       at com.fasterxml.jackson.databind.ser.impl.UnsupportedTypeSerializer.serialize(UnsupportedTypeSerializer.java:35)
+        //       at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:732)
+        //       at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:772)
+        //       at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:178)
+        //       at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider._serialize(DefaultSerializerProvider.java:479)
+        //       at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:318)
+        //       at com.fasterxml.jackson.databind.ObjectMapper._writeValueAndClose(ObjectMapper.java:4719)
+        //       at com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(ObjectMapper.java:3964)
+        //   See https://diff.blue/R013 to resolve this issue.
+
         User user = new User();
         user.setBirthDate(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
         user.setCreatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
@@ -71,8 +89,7 @@ class RunningControllerTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -87,52 +104,15 @@ class RunningControllerTest {
         assertEquals(201, actualCreateActivityResult.getStatusCodeValue());
         RunningDto body = actualCreateActivityResult.getBody();
         assertEquals(0.0f, body.getSpeed());
-        assertNull(body.getDoneDay());
         assertEquals(0.0f, body.getDistance());
         assertNull(body.getCreatedAt());
         assertEquals(0.0f, body.getCalories());
         assertNull(body.getId());
         assertNull(body.getDuration());
-        assertNull(body.getDoneTime());
+        assertNull(body.getDoneTimePoint());
         verify(runningRepository).save(Mockito.<Running>any());
     }
 
-    /**
-     * Method under test: {@link RunningController#createActivity(RunningDto)}
-     */
-    @Test
-    void testCreateActivity2() {
-
-        User user = new User();
-        user.setBirthDate(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCreatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCyclingList(new ArrayList<>());
-        user.setName("Name");
-        user.setOverallDistanceCycling(10.0f);
-        user.setOverallDistanceRunning(10.0f);
-        user.setPassword("iloveyou");
-        user.setRoles(new ArrayList<>());
-        user.setRunningList(new ArrayList<>());
-        user.setUpdatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setUser_id(UUID.randomUUID());
-        user.setUsername("janedoe");
-        user.setWeight(10.0f);
-
-        Running running = new Running();
-        running.setCalories(10.0f);
-        running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setId(UUID.randomUUID());
-        running.setSpeed(10.0f);
-        running.setSprints(1);
-        running.setUser(user);
-        RunningRepository runningRepository = mock(RunningRepository.class);
-        when(runningRepository.save(Mockito.<Running>any())).thenReturn(running);
-        RunningController runningController = new RunningController(new RunningService(runningRepository, null));
-        runningController.createActivity(new RunningDto());
-    }
 
     /**
      * Method under test: {@link RunningController#createActivity(RunningDto)}
@@ -144,7 +124,7 @@ class RunningControllerTest {
         //   Reason: R013 No inputs found that don't throw a trivial exception.
         //   Diffblue Cover tried to run the arrange/act section, but the method under
         //   test threw
-        //   com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDate` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling (through reference chain: com.activityproject.activitytracker.dto.RunningDto["doneDay"])
+        //   com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.ZonedDateTime` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling (through reference chain: com.activityproject.activitytracker.dto.RunningDto["createdAt"])
         //       at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:77)
         //       at com.fasterxml.jackson.databind.SerializerProvider.reportBadDefinition(SerializerProvider.java:1308)
         //       at com.fasterxml.jackson.databind.ser.impl.UnsupportedTypeSerializer.serialize(UnsupportedTypeSerializer.java:35)
@@ -197,8 +177,8 @@ class RunningControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
                 .andExpect(MockMvcResultMatchers.content()
                         .string(
-                                "{\"id\":null,\"doneDay\":null,\"doneTime\":null,\"distance\":0.0,\"duration\":null,\"speed\":0.0,\"calories\":0.0,"
-                                        + "\"createdAt\":null}"));
+                                "{\"id\":null,\"distance\":0.0,\"duration\":null,\"speed\":0.0,\"calories\":0.0,\"createdAt\":null,\"doneTimePoint"
+                                        + "\":null}"));
     }
 
     /**
@@ -243,8 +223,7 @@ class RunningControllerTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -261,8 +240,7 @@ class RunningControllerTest {
         assertSame(id, actualUpdateRunningResult.getId());
         assertNull(actualUpdateRunningResult.getDuration());
         assertNull(actualUpdateRunningResult.getCreatedAt());
-        assertNull(actualUpdateRunningResult.getDoneDay());
-        assertNull(actualUpdateRunningResult.getDoneTime());
+        assertNull(actualUpdateRunningResult.getDoneTimePoint());
         assertEquals(0.0f, actualUpdateRunningResult.getDistance());
         verify(runningRepository).existsById(Mockito.<UUID>any());
         verify(runningRepository).save(Mockito.<Running>any());
@@ -271,88 +249,10 @@ class RunningControllerTest {
     /**
      * Method under test: {@link RunningController#updateRunning(UUID, RunningDto)}
      */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testUpdateRunning2() {
-        User user = new User();
-        user.setBirthDate(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCreatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCyclingList(new ArrayList<>());
-        user.setName("Name");
-        user.setOverallDistanceCycling(10.0f);
-        user.setOverallDistanceRunning(10.0f);
-        user.setPassword("iloveyou");
-        user.setRoles(new ArrayList<>());
-        user.setRunningList(new ArrayList<>());
-        user.setUpdatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setUser_id(UUID.randomUUID());
-        user.setUsername("janedoe");
-        user.setWeight(10.0f);
 
-        Running running = new Running();
-        running.setCalories(10.0f);
-        running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setId(UUID.randomUUID());
-        running.setSpeed(10.0f);
-        running.setSprints(1);
-        running.setUser(user);
-        RunningRepository runningRepository = mock(RunningRepository.class);
-        when(runningRepository.save(Mockito.<Running>any())).thenReturn(running);
-        when(runningRepository.existsById(Mockito.<UUID>any())).thenReturn(false);
-        RunningController runningController = new RunningController(
-                new RunningService(runningRepository, new RunningMapperImpl()));
-        UUID id = UUID.randomUUID();
-        runningController.updateRunning(id, new RunningDto());
-    }
-
-    /**
-     * Method under test: {@link RunningController#updateRunning(UUID, RunningDto)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testUpdateRunning3() {
-        User user = new User();
-        user.setBirthDate(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCreatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCyclingList(new ArrayList<>());
-        user.setName("Name");
-        user.setOverallDistanceCycling(10.0f);
-        user.setOverallDistanceRunning(10.0f);
-        user.setPassword("iloveyou");
-        user.setRoles(new ArrayList<>());
-        user.setRunningList(new ArrayList<>());
-        user.setUpdatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setUser_id(UUID.randomUUID());
-        user.setUsername("janedoe");
-        user.setWeight(10.0f);
-
-        Running running = new Running();
-        running.setCalories(10.0f);
-        running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setId(UUID.randomUUID());
-        running.setSpeed(10.0f);
-        running.setSprints(1);
-        running.setUser(user);
-        RunningRepository runningRepository = mock(RunningRepository.class);
-        when(runningRepository.save(Mockito.<Running>any())).thenReturn(running);
-        when(runningRepository.existsById(Mockito.<UUID>any())).thenReturn(true);
-        RunningController runningController = new RunningController(new RunningService(runningRepository, null));
-        UUID id = UUID.randomUUID();
-        runningController.updateRunning(id, new RunningDto());
-    }
-
-    /**
-     * Method under test: {@link RunningController#updateRunning(UUID, RunningDto)}
-     */
     @Test
     void testUpdateRunning4() {
-        RunningService runningService = mock(RunningService.class);
+               RunningService runningService = mock(RunningService.class);
         RunningDto runningDto = new RunningDto();
         when(runningService.updateRunning(Mockito.<UUID>any(), Mockito.<RunningDto>any())).thenReturn(runningDto);
         RunningController runningController = new RunningController(runningService);

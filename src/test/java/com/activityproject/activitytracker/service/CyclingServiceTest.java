@@ -56,8 +56,7 @@ class CyclingServiceTest {
         cyclingDto.setCalories(10.0f);
         cyclingDto.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setDistance(10.0f);
-        cyclingDto.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setId(UUID.randomUUID());
         cyclingDto.setSpeed(10.0f);
 
@@ -82,8 +81,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);
@@ -111,8 +109,7 @@ class CyclingServiceTest {
         cycling2.setCalories(10.0f);
         cycling2.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling2.setDistance(10.0f);
-        cycling2.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling2.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling2.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling2.setId(UUID.randomUUID());
         cycling2.setSpeed(10.0f);
         cycling2.setUser(user2);
@@ -124,8 +121,7 @@ class CyclingServiceTest {
         cyclingDto2.setCalories(10.0f);
         cyclingDto2.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto2.setDistance(10.0f);
-        cyclingDto2.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto2.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto2.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto2.setId(UUID.randomUUID());
         cyclingDto2.setSpeed(10.0f);
         assertSame(cyclingDto, cyclingService.createActivity(cyclingDto2));
@@ -160,8 +156,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);
@@ -174,8 +169,7 @@ class CyclingServiceTest {
         cyclingDto.setCalories(10.0f);
         cyclingDto.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setDistance(10.0f);
-        cyclingDto.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setId(UUID.randomUUID());
         cyclingDto.setSpeed(10.0f);
         assertThrows(EntityNotFoundException.class, () -> cyclingService.createActivity(cyclingDto));
@@ -196,60 +190,7 @@ class CyclingServiceTest {
     /**
      * Method under test: {@link CyclingService#findAll()}
      */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testFindAll2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   jakarta.persistence.EntityNotFoundException: An error occurred
-        //       at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-        //       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
-        //       at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-        //       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-        //       at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:575)
-        //       at java.base/java.util.stream.AbstractPipeline.evaluateToArrayNode(AbstractPipeline.java:260)
-        //       at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:616)
-        //       at java.base/java.util.stream.ReferencePipeline.toArray(ReferencePipeline.java:622)
-        //       at java.base/java.util.stream.ReferencePipeline.toList(ReferencePipeline.java:627)
-        //       at com.activityproject.activitytracker.service.CyclingService.findAll(CyclingService.java:44)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        when(cyclingMapper.toDto(Mockito.<Cycling>any())).thenThrow(new EntityNotFoundException("An error occurred"));
-
-        User user = new User();
-        user.setBirthDate(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCreatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCyclingList(new ArrayList<>());
-        user.setName("Name");
-        user.setOverallDistanceCycling(10.0f);
-        user.setOverallDistanceRunning(10.0f);
-        user.setPassword("iloveyou");
-        user.setRoles(new ArrayList<>());
-        user.setRunningList(new ArrayList<>());
-        user.setUpdatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setUser_id(UUID.randomUUID());
-        user.setUsername("janedoe");
-        user.setWeight(10.0f);
-
-        Cycling cycling = new Cycling();
-        cycling.setAverageCadency(10.0f);
-        cycling.setAveragePower(10.0f);
-        cycling.setCalories(10.0f);
-        cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        cycling.setId(UUID.randomUUID());
-        cycling.setSpeed(10.0f);
-        cycling.setUser(user);
-
-        ArrayList<Cycling> cyclingList = new ArrayList<>();
-        cyclingList.add(cycling);
-        when(cyclingRepository.findAll()).thenReturn(cyclingList);
-        cyclingService.findAll();
-    }
 
     /**
      * Method under test: {@link CyclingService#deleteCycling(UUID)}
@@ -262,8 +203,7 @@ class CyclingServiceTest {
         cyclingDto.setCalories(10.0f);
         cyclingDto.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setDistance(10.0f);
-        cyclingDto.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setId(UUID.randomUUID());
         cyclingDto.setSpeed(10.0f);
         when(cyclingMapper.toDto(Mockito.<Cycling>any())).thenReturn(cyclingDto);
@@ -289,8 +229,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);
@@ -329,8 +268,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);
@@ -379,8 +317,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);
@@ -391,8 +328,7 @@ class CyclingServiceTest {
         cyclingDto.setCalories(10.0f);
         cyclingDto.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setDistance(10.0f);
-        cyclingDto.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setId(UUID.randomUUID());
         cyclingDto.setSpeed(10.0f);
         when(cyclingMapper.toDto(Mockito.<Cycling>any())).thenReturn(cyclingDto);
@@ -419,8 +355,7 @@ class CyclingServiceTest {
         cycling2.setCalories(10.0f);
         cycling2.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling2.setDistance(10.0f);
-        cycling2.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling2.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling2.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling2.setId(UUID.randomUUID());
         cycling2.setSpeed(10.0f);
         cycling2.setUser(user2);
@@ -434,8 +369,7 @@ class CyclingServiceTest {
         cyclingDto2.setCalories(10.0f);
         cyclingDto2.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto2.setDistance(10.0f);
-        cyclingDto2.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto2.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto2.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto2.setId(UUID.randomUUID());
         cyclingDto2.setSpeed(10.0f);
         assertSame(cyclingDto, cyclingService.updateCycling(id, cyclingDto2));
@@ -471,8 +405,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);
@@ -487,8 +420,7 @@ class CyclingServiceTest {
         cyclingDto.setCalories(10.0f);
         cyclingDto.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setDistance(10.0f);
-        cyclingDto.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setId(UUID.randomUUID());
         cyclingDto.setSpeed(10.0f);
         assertThrows(EntityNotFoundException.class, () -> cyclingService.updateCycling(id, cyclingDto));
@@ -508,8 +440,7 @@ class CyclingServiceTest {
         cyclingDto.setCalories(10.0f);
         cyclingDto.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setDistance(10.0f);
-        cyclingDto.setDoneDay(LocalDate.of(1970, 1, 1));
-        cyclingDto.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cyclingDto.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cyclingDto.setId(UUID.randomUUID());
         cyclingDto.setSpeed(10.0f);
         when(cyclingMapper.toDto(Mockito.<Cycling>any())).thenReturn(cyclingDto);
@@ -535,8 +466,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);
@@ -575,8 +505,7 @@ class CyclingServiceTest {
         cycling.setCalories(10.0f);
         cycling.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setDistance(10.0f);
-        cycling.setDoneDay(LocalDate.of(1970, 1, 1));
-        cycling.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        cycling.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         cycling.setId(UUID.randomUUID());
         cycling.setSpeed(10.0f);
         cycling.setUser(user);

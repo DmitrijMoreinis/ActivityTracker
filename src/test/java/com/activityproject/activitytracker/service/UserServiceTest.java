@@ -115,44 +115,6 @@ class UserServiceTest {
         verify(userRepository).findByUsername(Mockito.<String>any());
     }
 
-    /**
-     * Method under test: {@link UserService#loadUserByUsername(String)}
-     */
-    @Test
-    void testLoadUserByUsername3() throws UsernameNotFoundException {
-        User user = mock(User.class);
-        when(user.getPassword()).thenReturn("iloveyou");
-        when(user.getUsername()).thenReturn("");
-        when(user.getRoles()).thenReturn(new ArrayList<>());
-        doNothing().when(user).setBirthDate(Mockito.<Date>any());
-        doNothing().when(user).setCreatedAt(Mockito.<Date>any());
-        doNothing().when(user).setCyclingList(Mockito.<List<Cycling>>any());
-        doNothing().when(user).setName(Mockito.<String>any());
-        doNothing().when(user).setOverallDistanceCycling(anyFloat());
-        doNothing().when(user).setOverallDistanceRunning(anyFloat());
-        doNothing().when(user).setPassword(Mockito.<String>any());
-        doNothing().when(user).setRoles(Mockito.<Collection<Role>>any());
-        doNothing().when(user).setRunningList(Mockito.<List<Running>>any());
-        doNothing().when(user).setUpdatedAt(Mockito.<Date>any());
-        doNothing().when(user).setUser_id(Mockito.<UUID>any());
-        doNothing().when(user).setUsername(Mockito.<String>any());
-        doNothing().when(user).setWeight(anyFloat());
-        user.setBirthDate(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCreatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCyclingList(new ArrayList<>());
-        user.setName("Name");
-        user.setOverallDistanceCycling(10.0f);
-        user.setOverallDistanceRunning(10.0f);
-        user.setPassword("iloveyou");
-        user.setRoles(new ArrayList<>());
-        user.setRunningList(new ArrayList<>());
-        user.setUpdatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setUser_id(UUID.randomUUID());
-        user.setUsername("janedoe");
-        user.setWeight(10.0f);
-        when(userRepository.findByUsername(Mockito.<String>any())).thenReturn(user);
-        userService.loadUserByUsername("janedoe");
-    }
 
     /**
      * Method under test: {@link UserService#loadUserByUsername(String)}

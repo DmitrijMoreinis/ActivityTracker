@@ -1,6 +1,5 @@
 package com.activityproject.activitytracker.model;
 
-import com.activityproject.activitytracker.model.Cycling;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

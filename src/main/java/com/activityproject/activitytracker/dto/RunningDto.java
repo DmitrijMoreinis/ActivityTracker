@@ -1,10 +1,6 @@
 package com.activityproject.activitytracker.dto;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 
 public class RunningDto extends ActivityDto {

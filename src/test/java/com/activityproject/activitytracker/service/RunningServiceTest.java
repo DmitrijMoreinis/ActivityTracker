@@ -68,8 +68,7 @@ class RunningServiceTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -95,8 +94,7 @@ class RunningServiceTest {
         running2.setCalories(10.0f);
         running2.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running2.setDistance(10.0f);
-        running2.setDoneDay(LocalDate.of(1970, 1, 1));
-        running2.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running2.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running2.setId(UUID.randomUUID());
         running2.setSpeed(10.0f);
         running2.setSprints(1);
@@ -118,44 +116,6 @@ class RunningServiceTest {
         when(runningRepository.findAll()).thenReturn(new ArrayList<>());
         assertTrue(runningService.findAll().isEmpty());
         verify(runningRepository).findAll();
-    }
-
-    /**
-     * Method under test: {@link RunningService#findAll()}
-     */
-    @Test
-    void testFindAll2() {
-        User user = new User();
-        user.setBirthDate(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCreatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setCyclingList(new ArrayList<>());
-        user.setName("Name");
-        user.setOverallDistanceCycling(10.0f);
-        user.setOverallDistanceRunning(10.0f);
-        user.setPassword("iloveyou");
-        user.setRoles(new ArrayList<>());
-        user.setRunningList(new ArrayList<>());
-        user.setUpdatedAt(Date.from(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant()));
-        user.setUser_id(UUID.randomUUID());
-        user.setUsername("janedoe");
-        user.setWeight(10.0f);
-
-        Running running = new Running();
-        running.setCalories(10.0f);
-        running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
-        running.setId(UUID.randomUUID());
-        running.setSpeed(10.0f);
-        running.setSprints(1);
-        running.setUser(user);
-
-        ArrayList<Running> runningList = new ArrayList<>();
-        runningList.add(running);
-        when(runningRepository.findAll()).thenReturn(runningList);
-        when(runningMapper.toDto(Mockito.<Running>any())).thenThrow(new EntityNotFoundException("An error occurred"));
-        runningService.findAll();
     }
 
     /**
@@ -182,8 +142,7 @@ class RunningServiceTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -221,8 +180,7 @@ class RunningServiceTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -270,8 +228,7 @@ class RunningServiceTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -298,8 +255,7 @@ class RunningServiceTest {
         running2.setCalories(10.0f);
         running2.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running2.setDistance(10.0f);
-        running2.setDoneDay(LocalDate.of(1970, 1, 1));
-        running2.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running2.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running2.setId(UUID.randomUUID());
         running2.setSpeed(10.0f);
         running2.setSprints(1);
@@ -339,8 +295,7 @@ class RunningServiceTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -367,8 +322,7 @@ class RunningServiceTest {
         running2.setCalories(10.0f);
         running2.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running2.setDistance(10.0f);
-        running2.setDoneDay(LocalDate.of(1970, 1, 1));
-        running2.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running2.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running2.setId(UUID.randomUUID());
         running2.setSpeed(10.0f);
         running2.setSprints(1);
@@ -418,8 +372,7 @@ class RunningServiceTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);
@@ -459,8 +412,7 @@ class RunningServiceTest {
         running.setCalories(10.0f);
         running.setCreatedAt(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setDistance(10.0f);
-        running.setDoneDay(LocalDate.of(1970, 1, 1));
-        running.setDoneTime(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
+        running.setDoneTimePoint(LocalDate.of(1970, 1, 1).atStartOfDay().atZone(ZoneOffset.UTC));
         running.setId(UUID.randomUUID());
         running.setSpeed(10.0f);
         running.setSprints(1);

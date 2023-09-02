@@ -2,6 +2,8 @@ package com.activityproject.activitytracker.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 @Entity
 @Data

@@ -1,38 +1,42 @@
 package com.activityproject.activitytracker.dto;
 
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.jetbrains.annotations.NotNull;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 
 @Data
 @NoArgsConstructor
+@Getter
+@Setter
 public abstract class ActivityDto {
 
-   private UUID id;
+    UUID id;
 
-   private LocalDate doneDay;
-
-   private ZonedDateTime doneTime;
+    ZonedDateTime DoneTimePoint;
 
 
    @NotNull
-   private float distance;
+    float distance;
 
-   private Duration duration;
+    Duration duration;
 
-   private float speed;
+    float speed;
 
-   private float calories;
+    float calories;
 
-   private ZonedDateTime createdAt;
+   @CreationTimestamp
+    ZonedDateTime createdAt;
 }

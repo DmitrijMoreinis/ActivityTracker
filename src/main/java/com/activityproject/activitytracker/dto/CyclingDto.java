@@ -2,6 +2,7 @@ package com.activityproject.activitytracker.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 
 @Data

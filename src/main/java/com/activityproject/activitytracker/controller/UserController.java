@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * Interface for UserController. Contains methods for handling user related operations
  */
-import com.activityproject.activitytracker.model.Role;
 import com.activityproject.activitytracker.model.User;
 import com.activityproject.activitytracker.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +38,7 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers() {
+        log.info("endpoint getsUsers is called");
         return userService.getUsers();
     }
 
@@ -50,12 +50,16 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User saveUser(@RequestBody User user) {
+        log.info("endpoint saveUser is called");
         return userService.saveUser(user);
     }
 
 
     @GetMapping("me")
     public User getMine(){
+        log.info("endpoint getMine is called");
         return userService.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
+
+
 }

@@ -3,9 +3,6 @@ package com.activityproject.activitytracker.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-import java.util.UUID;
-
 /**
  * Entity class for representing a Role in the database
  */
